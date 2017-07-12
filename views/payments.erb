@@ -1,0 +1,49 @@
+<h1 class="sr-only">Payments</h1>
+
+<h4>Add Payment</h4>
+<form action="/payments" method="post" class="form-inline">
+
+  <label for="currency" class="sr-only">Currency: </label>
+  <select name="currency" class="custom-select mr-sm-2">
+    <option>USD</option>
+    <option>GBP</option>
+    <option>EUR</option>
+    <option>AUD</option>
+    <option>CAD</option>
+    <option>JPY</option>
+    <option>BTC</option>
+    <option>INR</option>
+  </select>
+
+  <label for="amount" class="sr-only">Amount: </label>
+  <input type="text" name="amount" class="form-control mr-sm-2" placeholder="0.00">
+
+  <label for="recipient" class="sr-only">Recipient: </label>
+  <select name="recipient" class="custom-select mr-sm-2">
+    <% @people.each do |person| %>
+    <option value="<%= person.id %>"><%= person.name %></option>
+    <% end %>
+  </select>
+
+  <input type="submit" value="Make Payment" class="btn btn-primary">
+</form>
+
+<h3>Past Payments</h3>
+<table class="table table-hover">
+  <thead class="thead-default">
+    <th>Recipient</th>
+    <th>Currency</th>
+    <th>Amount</th>
+    <th>Status</th>
+  </thead>
+  <tbody>
+    <% @payments.each do |payment| %>
+    <tr id="<%= payment.id %>">
+      <td><%= payment.recipient.name %></td>
+      <td><%= payment.currency %></td>
+      <td><%= payment.amount %></td>
+      <td><%= payment.status %></td>
+    </tr>
+    <% end %>
+  </tbody>
+</table>

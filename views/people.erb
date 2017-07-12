@@ -1,0 +1,14 @@
+<h1 class="sr-only">People</h1>
+
+<h4>Add Person</h4>
+<form action="/people" method="post" class="form-inline">
+  <label for="name" class="sr-only">Name: </label>
+  <input type="text" name="name" placeholder="Joe Bloggs" class="form-control mr-sm-2">
+  <input type="submit" value="Add Person" class="btn btn-primary">
+</form>
+
+<ul>
+  <% @people.each do |person| %>
+  <li id="<%= person.id %>"><%= person.name %></li>
+  <% end %>
+</ul>
